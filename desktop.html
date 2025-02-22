@@ -78,6 +78,16 @@
         </div>
     </section>
 
+<!-- Description Section -->
+<section id="description" class="py-20 px-6 text-justify bg-[rgba(0,0,0,0.5)]">
+    <div class="max-w-4xl mx-auto">
+        <h2 class="text-4xl font-bold text-[#FFA500] mb-6">Why ME?</h2>
+        <p class="text-xl text-[#E2E2B6] leading-relaxed">
+            With 3+ years of experience in 15+ programming languages, I’ve built functional, client-focused websites that deliver seamless user experiences and modern, scalable solutions.
+        </p>
+    </div>
+</section>
+
     <!-- Skills Section -->
     <section id="skills" class="py-20 px-6 text-center">
         <h2 id="skills-title" class="text-5xl font-bold mb-6 text-[#FFA500]">Skills</h2>
@@ -85,14 +95,20 @@
             <span class="skill">Java</span>
             <span class="skill">Python</span>
             <span class="skill">C</span>
+            <span class="skill">C++</span>
             <span class="skill">C#</span>
             <span class="skill">JavaScript</span>
+            <span class="skill">TypeScript</span>
             <span class="skill">React</span>
             <span class="skill">Angular</span>
             <span class="skill">Django</span>
             <span class="skill">Node.js</span>
+            <span class="skill">Next.js</span>
+            <span class="skill">Flutter</span>
             <span class="skill">Tailwind CSS</span>
-            <span class="skill">UI/UX Design</span>
+            <span class="skill">PHP</span>
+            <span class="skill">GDScript</span>
+            <span class="skill">Illustrator</span>
         </div>
     </section>
 
@@ -119,17 +135,6 @@
         <div class="text-center mt-10">
             <button id="view-more-button" class="px-6 py-3 bg-[#E2E2B6] text-[#021526] font-bold rounded-lg hover:bg-[rgba(0,0,0,0.2)] hover:text-[#E2E2B6] transition duration-300">View More</button>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 px-6 text-center">
-        <h2 id="contact-title" class="text-5xl font-bold mb-6 text-[#FFA500]">Get in Touch</h2>
-        <form class="max-w-lg mx-auto">
-            <input type="text" placeholder="Your Name" class="w-full p-4 mb-4 bg-[rgba(125,125,125,0.2)] text-[#E2E2B6] rounded-lg placeholder-[#E2E2B6]">
-            <input type="email" placeholder="Your Email" class="w-full p-4 mb-4 bg-[rgba(125,125,125,0.2)] text-[#E2E2B6] rounded-lg placeholder-[#E2E2B6]">
-            <textarea placeholder="Your Message" class="w-full p-4 mb-4 bg-[rgba(125,125,125,0.2)] text-[#E2E2B6] rounded-lg placeholder-[#E2E2B6]"></textarea>
-            <button id="send-button" type="submit" class="px-8 py-4 bg-[#E2E2B6] text-[#021526] font-bold rounded-lg hover:bg-[rgba(0,0,0,0.2)] hover:text-[#E2E2B6] transition duration-300">Send</button>
-        </form>
     </section>
 
     <script>
@@ -175,32 +180,6 @@
             },
         });
 
-        // Contact Section Parallax
-        gsap.from("#contact-title", {
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            stagger: 0.2,
-            scrollTrigger: {
-                trigger: "#contact",
-                start: "top 60%",
-                end: "top 50%",
-                scrub: 1,
-            },
-        });
-
-        // View More Button Parallax
-        gsap.from("#view-more-button", {
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            scrollTrigger: {
-                trigger: "#view-more-button",
-                start: "top 80%",
-                end: "top 50%",
-                scrub: 1,
-            },
-        });
     </script>
 </body>
 </html>
