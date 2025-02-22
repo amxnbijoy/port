@@ -211,11 +211,17 @@
         });
 
         // Contact Section Parallax
-        gsap.from("#contact-title, #send-button", {
+        gsap.from("#contact-title", {
             opacity: 0,
             y: 50,
             duration: 1,
             stagger: 0.2,
+            scrollTrigger: {
+                trigger: "#contact",
+                start: "top 95%",
+                end: "top 50%",
+                scrub: 1,
+            },
 
         });
 
