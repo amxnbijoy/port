@@ -1,0 +1,10 @@
+<script>
+    window.onload = function () {
+        let isMobile = /Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+        if (isMobile) {
+            window.location.href = "projects-mobile.html";
+        } else {
+            window.location.href = "projects-desktop.html";
+        }
+    };
+</script>
