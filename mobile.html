@@ -1,220 +1,357 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Web Developer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <style>
-        body {
-            color: #E2E2B6; /* Light beige text */
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-        
-        #hero-name {
-            font-size: 60px; /* Adjusted for mobile */
-            line-height: 1;
-        }
-        #hero-greeting {
-            font-size: 30px; /* Adjusted for mobile */
-        }
-        /* Fixed video background */
-        .video-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* Place it behind all content */
-            object-fit: cover;
-        }
-        .video-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7); /* Dark overlay for better text visibility */
-            z-index: -1;
-        }
-        /* Ensure sections are above the video */
-        section {
-            position: relative;
-            z-index: 1;
-            background: transparent; /* Remove solid background */
-        }
-        /* Mobile-specific adjustments */
-        @media (max-width: 768px) {
-            #hero-name {
-                font-size: 40px; /* Smaller font size for mobile */
-            }
-            #hero-greeting {
-                font-size: 24px; /* Smaller font size for mobile */
-            }
-            #hero-subtitle {
-                font-size: 18px; /* Smaller font size for mobile */
-            }
-            #hero-button {
-                font-size: 16px; /* Smaller font size for mobile */
-                padding: 8px 16px; /* Smaller padding for mobile */
-            }
-            #skills-title, #projects-title, #contact-title {
-                font-size: 36px; /* Smaller font size for mobile */
-            }
-            .skill {
-                font-size: 16px; /* Smaller font size for mobile */
-            }
-            .project {
-                padding: 16px; /* Smaller padding for mobile */
-            }
-            .project h3 {
-                font-size: 18px; /* Smaller font size for mobile */
-            }
-            .project p {
-                font-size: 14px; /* Smaller font size for mobile */
-            }
-            #view-more-button, #send-button {
-                font-size: 16px; /* Smaller font size for mobile */
-                padding: 8px 16px; /* Smaller padding for mobile */
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-bg: #0f172a;
+      --text-color: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--primary-bg);
+      color: var(--text-color);
+      overflow-x: hidden;
+    }
+
+    video.bg-video {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .video-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: -1;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1rem;
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(10px);
+      z-index: 10;
+    }
+
+    .nav-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .nav-center {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    .nav-center a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: bold;
+    }
+
+    .nav-right a.hire-btn {
+      background: #fff;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .nav-right a.hire-btn:hover {
+      background: transparent;
+      border: 1px solid #fff;
+      color: #fff;
+    }
+
+    section {
+      padding: 5rem 1.5rem 2rem 1.5rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding-top: 4rem;
+    }
+
+    .hero-text {
+      font-size: 2.5rem;
+      font-family: 'Playfair Display', serif;
+      animation: glow 2.5s ease-in-out infinite;
+    }
+
+    .subheading {
+      font-size: 1.1rem;
+      margin: 1rem 0;
+      color: #ddd;
+    }
+
+    .btn-discuss {
+      background: #fff;
+      color: #000;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 5px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1.5rem;
+    }
+
+    .btn-discuss:hover {
+      background: transparent;
+      color: #fff;
+      border: 1px solid white;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #334155;
+      padding-bottom: 0.5rem;
+    }
+
+    h4, h3 {
+      font-weight: normal;
+      font-size: 1rem;
+      margin: 1rem 0;
+      color: #ddd;
+    }
+
+    #projects,
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .project-card,
+    .skill-card {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 1rem;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+    }
+
+    .project-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background-size: cover;
+      background-position: center;
+      border-radius: 6px;
+    }
+
+    .project-title {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .project-subtitle {
+      font-size: 0.85rem;
+      color: #aaa;
+      text-align: center;
+    }
+
+    .skill-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+    }
+
+    .skill-desc {
+      font-size: 0.85rem;
+      color: #bbb;
+    }
+
+    .contact-card {
+      text-align: center;
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: #fff;
+      margin: 0 0.5rem;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes glow {
+      0% {
+        text-shadow: 0 0 5px #fff, 0 0 10px #3b82f6;
+      }
+      50% {
+        text-shadow: 0 0 20px #fff, 0 0 30px #60a5fa;
+      }
+      100% {
+        text-shadow: 0 0 5px #fff, 0 0 10px #3b82f6;
+      }
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-text {
+        font-size: 2rem;
+      }
+
+      .subheading {
+        font-size: 0.95rem;
+      }
+
+      .btn-discuss {
+        font-size: 0.9rem;
+      }
+
+      .project-subtitle,
+      .skill-desc {
+        font-size: 0.75rem;
+      }
+
+      .project-title,
+      .skill-title {
+        font-size: 0.95rem;
+      }
+    }
+
+  </style>
 </head>
-<body class="text-[#E2E2B6] font-sans">
-    <!-- Navbar -->
-    <nav class="fixed top-0 left-0 w-full bg-[rgba(0,0,0,1)] bg-opacity-90 z-50 shadow-lg">
-        <div class="container mx-auto px-4 py-2 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold text-[#FFA500]">aetheria</a>
-            <div class="space-x-4">
-                <a href="#skills" class="text-sm font-bold text-[#E2E2B6] hover:text-[#6EACDA] transition duration-300">Skills</a>
-                <a href="services-index.html" class="text-sm font-bold text-[#E2E2B6] hover:text-[#6EACDA] transition duration-300">Services</a>
-                <a href="projects-index.html" class="text-sm font-bold text-[#E2E2B6] hover:text-[#6EACDA] transition duration-300">Projects</a>
-                <a href="contact-index.html" class="text-sm font-bold text-[#E2E2B6] hover:text-[#6EACDA] transition duration-300">Contact</a>
-            </div>
-        </div>
-    </nav>
-    
-    <!-- Fixed Video Background -->
-    <video class="video-background" autoplay muted loop>
-        <source src="bg1.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <div class="video-overlay"></div>
+<body>
 
-    <!-- Hero Section -->
-    <section class="h-screen flex flex-col items-center justify-center">
-        <div class="text-center">
-            <h1 id="hero-greeting" class="font-extrabold text-[#6EACDA]">Hi, I'm <span id="hero-name" class="font-extrabold text-[#6EACDA]">Aman Bijoy</span></h1>
-            <p id="hero-subtitle" class="mt-4 text-lg text-[#E2E2B6]">Web Developer | UI/UX Enthusiast</p>
-            <a id="hero-button" href="#projects" class="mt-4 inline-block px-6 py-2 bg-[#6EACDA] text-[#021526] font-bold rounded-lg text-sm hover:bg-[#03346E] hover:text-[#E2E2B6] transition duration-300">View My Work</a>
-        </div>
-    </section>
+  <video class="bg-video" autoplay muted loop>
+    <source src="background-video.mp4" type="video/webm" />
+  </video>
+  <div class="video-overlay"></div>
 
-    <section id="description" class="py-10 px-4 text-justify bg-[rgba(0,0,0,0.5)]">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-2xl md:text-4xl font-bold text-[#FFA500] mb-4">Why ME?</h2>
-            <p class="text-base md:text-xl text-[#E2E2B6] leading-relaxed">
-                With 3+ years of experience in 15+ programming languages, I’ve built functional, client-focused websites that deliver seamless user experiences and modern, scalable solutions.
-            </p>
-        </div>
-    </section>
+  <nav>
+    <div class="nav-container">
+      <h3 class="nav-left">-ab-</h3>
+      <div class="nav-center">
+        <a href="#hero">Home</a>
+        <a href="#why">Why Hire Me</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact" class="hire-btn">Contact</a>
+      </div>
+    </div>
+  </nav>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-10 px-4 text-center">
-        <h2 id="skills-title" class="text-3xl font-bold mb-4 text-[#FFA500]">Skills</h2>
-        <div class="grid grid-cols-2 gap-4 text-sm font-semibold text-[#E2E2B6]">
-            <span class="skill">Java</span>
-            <span class="skill">Python</span>
-            <span class="skill">C</span>
-            <span class="skill">C++</span>
-            <span class="skill">C#</span>
-            <span class="skill">JavaScript</span>
-            <span class="skill">TypeScript</span>
-            <span class="skill">React</span>
-            <span class="skill">Angular</span>
-            <span class="skill">Django</span>
-            <span class="skill">Node.js</span>
-            <span class="skill">Next.js</span>
-            <span class="skill">Flutter</span>
-            <span class="skill">Tailwind CSS</span>
-            <span class="skill">PHP</span>
-            <span class="skill">GDScript</span>
-            <span class="skill">Illustrator</span>
-        </div>
-    </section>
+  <section id="hero" class="hero">
+    <div class="hero-text">Aman Bijoy</div>
+    <h3 class="subheading">Software Dev | Web Dev | Designer</h3>
+    <a href="#contact" class="btn-discuss">Let's Talk</a>
+  </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-10 px-4">
-        <h2 id="projects-title" class="text-3xl font-bold text-left text-[#FFA500] mb-6">My Projects</h2>
-        <div class="grid gap-6">
-            <div class="project bg-[rgba(125,125,125,0.2)] p-4 rounded-lg shadow-lg">
-                <img src="ss1.png" alt="Blackboxx" class="w-full h-auto rounded-lg">
-                <h3 class="text-lg font-bold mt-2">Blackboxx</h3>
-                <p class="text-[#E2E2B6] text-sm">A campus management platform designed to streamline academic and administrative tasks.</p>
-            </div>
-            <div class="project bg-[rgba(125,125,125,0.2)] p-4 rounded-lg shadow-lg">
-                <img src="ss2.png" alt="Weether" class="w-full h-auto rounded-lg">
-                <h3 class="text-lg font-bold mt-2">Weether</h3>
-                <p class="text-[#E2E2B6] text-sm">A weather checking app that provides real-time weather updates based on city input.</p>
-            </div>
-            <div class="project bg-[rgba(125,125,125,0.2)] p-4 rounded-lg shadow-lg">
-                <img src="ss4.png" alt="Aldrich Sneakers" class="w-full h-auto rounded-lg">
-                <h3 class="text-lg font-bold mt-2">Aldrich Sneakers</h3>
-                <p class="text-[#E2E2B6] text-sm">A modern e-commerce platform for showcasing and selling premium sneakers.</p>
-            </div>
-        </div>
-        <div class="text-center mt-6">
-            <button id="view-more-button" class="px-4 py-2 bg-[#E2E2B6] text-[#021526] font-bold rounded-lg hover:bg-[rgba(0,0,0,0.2)] hover:text-[#E2E2B6] transition duration-300">View More</button>
-        </div>
-    </section>
+  <section id="why">
+    <h2>Why Hire Me</h2>
+    <h4>I build responsive, scalable apps with an eye for design and user experience.</h4>
+    <h4>Expert in React, Flutter, Python, and Adobe tools.</h4>
+    <h4>Focused on clean, maintainable code and strong collaboration.</h4>
+    <h4>Committed to turning ideas into reality, with speed and precision.</h4>
+  </section>
 
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card"><div class="skill-title">Python</div><div class="skill-desc">Automation, AI, backend</div></div>
+      <div class="skill-card"><div class="skill-title">Flutter</div><div class="skill-desc">One codebase, all platforms</div></div>
+      <div class="skill-card"><div class="skill-title">React</div><div class="skill-desc">Interactive UIs</div></div>
+      <div class="skill-card"><div class="skill-title">Illustrator</div><div class="skill-desc">Precision vector design</div></div>
+      <div class="skill-card"><div class="skill-title">HTML/CSS</div><div class="skill-desc">Clean and responsive</div></div>
+      <div class="skill-card"><div class="skill-title">C</div><div class="skill-desc">System-level performance</div></div>
+      <div class="skill-card"><div class="skill-title">Java</div><div class="skill-desc">Enterprise-ready apps</div></div>
+      <div class="skill-card"><div class="skill-title">Photoshop</div><div class="skill-desc">Photo & UI editing</div></div>
+    </div>
+  </section>
 
-    <script>
-        gsap.registerPlugin(ScrollTrigger);
+  <section id="projects">
+    <div class="project-card">
+      <div class="project-image" style="background-image: url('ss1.png');"></div>
+      <div class="project-title">blackboxx</div>
+      <div class="project-subtitle">Responsive UI</div>
+    </div>
+    <div class="project-card">
+      <div class="project-image" style="background-image: url('ss2.png');"></div>
+      <div class="project-title">weether</div>
+      <div class="project-subtitle">Weather App</div>
+    </div>
+    <div class="project-card">
+      <div class="project-image" style="background-image: url('ss3.jpg');"></div>
+      <div class="project-title">piggy</div>
+      <div class="project-subtitle">Budget Tracker</div>
+    </div>
+    <div class="project-card">
+      <div class="project-image" style="background-image: url('ss4.png');"></div>
+      <div class="project-title">Store UI</div>
+      <div class="project-subtitle">Single Product Focus</div>
+    </div>
+  </section>
 
-        // Hero Section Parallax (Move Away Effect)
-        gsap.to("#hero-greeting, #hero-name, #hero-subtitle, #hero-button", {
-            opacity: 0, // Fade out
-            scale: 0.8, // Shrink the elements
-            scrollTrigger: {
-                trigger: "section", // Trigger on the hero section
-                start: "top top", // Start when the top of the section is at the top of the viewport
-                end: "bottom top", // End when the bottom of the section is at the top of the viewport
-                scrub: 1, // Smooth scrubbing effect
-            },
-        });
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="contact-card">
+      <h3>WhatsApp: +91 91080 63329</h3>
+      <h3>Email: crzdprt@outlook.com</h3>
+    </div>
+  </section>
 
-        // Skills Section Parallax
-        gsap.from("#skills-title, .skill", {
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            stagger: 0.1,
-            scrollTrigger: {
-                trigger: "#skills",
-                start: "top 95%",
-                end: "top 5%",
-                scrub: 1,
-            },
-        });
+  <footer>
+    <p>
+      <a href="#hero">Home</a> |
+      <a href="#why">Why Hire Me</a> |
+      <a href="#projects">Projects</a>
+    </p>
+    <p>Built with HTML/CSS. Mobile Ready.</p>
+  </footer>
 
-        // Projects Section Parallax
-        gsap.from("#projects-title, .project", {
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            stagger: 0.2,
-            scrollTrigger: {
-                trigger: "#projects",
-                start: "top 80%",
-                end: "top 50%",
-                scrub: 1,
-            },
-        });
-    </script>
 </body>
 </html>
